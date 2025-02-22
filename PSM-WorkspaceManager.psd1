@@ -57,7 +57,7 @@
     NestedModules = @()
 
     # Functions to export from this module
-    FunctionsToExport = @('Get-GitStrategy', 'Get-CurrentBranch', 'New-GitBranch', 'New-GitBranchName', 'New-Workspace', 'Set-Workspace', 'New-Repository', 'Get-Repository', 'Set-Repository', 'Get-TemporaryBranch', 'Get-GitBranch', 'Get-RepositoryStatus', 'Set-Branch', 'Set-GitStrategy', 'Get-MainBranch', 'Set-CommitBranch', 'Set-TemporaryStash', 'Update-AllRepositoriesMain', 'Update-Workspace')
+    FunctionsToExport = @('Get-CurrentBranch', 'Get-GitStrategy', 'Get-MainBranch', 'Get-RepositoryStatus', 'Get-TemporaryStash', 'Get-Workspace', 'New-Branch', 'New-Repository', 'Set-Branch', 'Set-CommitBranch', 'Set-GitStrategy', 'Set-TemporaryStash', 'Update-AllRepositoriesMain', 'Update-OriginRepository', 'Update-Workspace')
 
     # Cmdlets to export from this module
     CmdletsToExport = @()
