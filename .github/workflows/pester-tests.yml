@@ -24,7 +24,7 @@ jobs:
         uses: PSModule/Initialize-PSModule@main
 
       - name: Install PSM-WorkspaceManager module
-        run: pwsh -Command "Install-Module -Name PSM-WorkspaceManager -Force -Scope CurrentUser"
+        run: pwsh -Command "Import-Module ./PSM-WorkspaceManager.psm1"
 
       - name: Test-PSModule
         run: pwsh -NoProfile -NoLogo -Command "Invoke-ScriptAnalyzer -ExcludeRule PSAvoidUsingWriteHost,PSAvoidUsingPositionalParameters,PSUseSingularNouns,PSUseShouldProcessForStateChangingFunctions -EnableExit -Path WorkspaceManagement/src"
