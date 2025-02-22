@@ -15,7 +15,7 @@
     CompanyName = 'Your Company'
 
     # Copyright statement for this module
-    Copyright = '(c) 2021 Your Company. All rights reserved.'
+    Copyright = 'MIT Licensed'
 
     # Description of the functionality provided by this module
     Description = 'This is a sample module manifest file.'
