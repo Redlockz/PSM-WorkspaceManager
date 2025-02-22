@@ -1,3 +1,6 @@
+# Import the module
+Import-Module -Name 'PSM-WorkspaceManager'
+
 Describe 'Set-GitStrategy' {
     It 'Should set the merge strategy for the specified branch' {
         Set-GitStrategy -RepositoryPath 'path/to/repo' -BranchName 'feature-branch' -MergeStrategy 'merge'

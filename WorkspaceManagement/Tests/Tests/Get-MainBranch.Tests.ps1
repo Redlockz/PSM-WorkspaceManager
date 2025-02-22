@@ -1,3 +1,6 @@
+# Import the module
+Import-Module -Name 'PSM-WorkspaceManager'
+
 Describe 'Get-MainBranch' {
     It 'Should return the main branch name' {
         $result = Get-MainBranch -Path 'path/to/repo'

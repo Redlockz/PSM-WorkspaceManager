@@ -1,3 +1,6 @@
+# Import the module
+Import-Module -Name 'PSM-WorkspaceManager'
+
 function Test-UpdateAllRepositoriesMain {
     $result = Update-AllRepositoriesMain
     $expected = "Expected Result"

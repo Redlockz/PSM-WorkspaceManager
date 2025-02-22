@@ -1,3 +1,6 @@
+# Import the module
+Import-Module -Name 'PSM-WorkspaceManager'
+
 Describe 'Get-TemporaryStash' {
     It 'should return the stash list for the specified branch' {
         param (

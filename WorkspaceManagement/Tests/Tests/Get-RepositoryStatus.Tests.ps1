@@ -1,3 +1,6 @@
+# Import the module
+Import-Module -Name 'PSM-WorkspaceManager'
+
 Describe 'Get-RepositoryStatus' {
     It 'Should return the repository status' {
         $result = Get-RepositoryStatus -RepositoryPath 'path/to/repo'

@@ -1,3 +1,6 @@
+# Import the module
+Import-Module -Name 'PSM-WorkspaceManager'
+
 function Get-CommitBranch {
     param (
         [string]$branchName

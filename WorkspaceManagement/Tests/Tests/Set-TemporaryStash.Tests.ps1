@@ -1,3 +1,6 @@
+# Import the module
+Import-Module -Name 'PSM-WorkspaceManager'
+
 Describe 'Set-TemporaryStash' {
     It 'Should stash uncommitted changes' {
         Set-TemporaryStash -Path 'path/to/repo'

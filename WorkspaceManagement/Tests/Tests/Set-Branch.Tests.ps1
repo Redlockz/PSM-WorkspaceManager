@@ -1,3 +1,6 @@
+# Import the module
+Import-Module -Name 'PSM-WorkspaceManager'
+
 Describe 'Set-Branch' {
     It 'Should checkout the specified branch' {
         Set-Branch -RepositoryPath 'path/to/repo' -BranchName 'feature-branch'

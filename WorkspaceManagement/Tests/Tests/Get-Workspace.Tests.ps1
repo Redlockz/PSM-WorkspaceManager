@@ -1,3 +1,6 @@
+# Import the module
+Import-Module -Name 'PSM-WorkspaceManager'
+
 BeforeAll {
     # Import the module under test
     Import-Module -Name PSM-WorkspaceManager

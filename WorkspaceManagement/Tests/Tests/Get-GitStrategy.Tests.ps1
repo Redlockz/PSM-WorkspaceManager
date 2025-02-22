@@ -1,3 +1,6 @@
+# Import the module
+Import-Module -Name 'PSM-WorkspaceManager'
+
 Describe 'Get-GitStrategy' {
     It 'Should return the git strategy configuration' {
         $result = Get-GitStrategy -RepositoryPath 'path/to/repo'

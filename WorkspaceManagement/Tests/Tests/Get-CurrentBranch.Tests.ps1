@@ -1,3 +1,6 @@
+# Import the module
+Import-Module -Name 'PSM-WorkspaceManager'
+
 Describe 'Get-CurrentBranch' {
     It 'Should return the current branch name' {
         $result = Get-CurrentBranch -RepositoryPath 'path/to/repo'
