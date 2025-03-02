@@ -1,14 +1,18 @@
-param()
-Set-StrictMode -Version "Latest" 
-$ErrorActionPreference = "Stop"
-
-BeforeAll {
-    $scriptDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
-    $modulePath = Join-Path -Path $scriptDir -ChildPath '../../../PSM-WorkspaceManager.psm1'
-    Import-Module -Name $modulePath -Force
+# Search for the module file and import it
+$env:PSScriptRoot = (Get-Location).Path
+Write-Host "Script root: $env:PSScriptRoot"
+$modulePath = $(Get-ChildItem -Path $env:PSScriptRoot -Recurse -Include '*.psm1').FullName
+Write-Host "Module path: $modulePath"
+if ($null -eq $modulePath) {
+    throw "Module file not found."
+} else {
+    Write-Host "Importing module from $modulePath"
+    Import-Module -Name $modulePath -Force -ErrorAction Stop
 }
 Describe 'New-Branch' {
     It 'should perform the expected behavior' {
-        # Add your test code here
+        Mock New-Branch { return 'feature/new-branch' }
+        $result = New-Branch -RepositoryPath 'path/to/repo' -BranchName 'feature/new-branch'
+        $result | Should -Be 'feature/new-branch'
     }
 }

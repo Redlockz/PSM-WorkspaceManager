@@ -66,3 +66,12 @@ Contributions are welcome! Please submit a pull request or open an issue for any
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
+
+
+# Versioning
+
+v0.0.1
+- Repo created by AI Agent
+
+v0.0.2
+- Fixed bugs using AI Agent
