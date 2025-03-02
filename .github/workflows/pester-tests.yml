@@ -1,23 +1,59 @@
-name: Pester Tests
+name: CI PSScriptAnalyzer
 
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
+  Test-PSModule:
+    name: Test-PSModule
+    runs-on: windows-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-    - name: Set up PowerShell
-      uses: actions/setup-powershell@v1
+      - name: Initialize environment
+        uses: PSModule/Initialize-PSModule@main
 
-    - name: Install Pester
-      run: Install-Module -Name Pester -Force -SkipPublisherCheck
+      - name: Install PSM-WorkspaceManager module
+        run: pwsh -Command "Import-Module ./PSM-WorkspaceManager.psm1"
 
-    - name: Run Pester tests
-      run: Invoke-Pester -Script ./WorkspaceManagement/Tests/Tests/*.Tests.ps1
+      - name: Test-PSModule
+        run: pwsh -NoProfile -NoLogo -Command "Invoke-ScriptAnalyzer -ExcludeRule PSAvoidUsingWriteHost,PSAvoidUsingPositionalParameters,PSUseSingularNouns,PSUseShouldProcessForStateChangingFunctions -EnableExit -Path WorkspaceManagement/src"
+
+      - name: Pester-Test
+        shell: pwsh
+        run: |
+          $config = New-PesterConfiguration
+          $config.Run.Path = ".\WorkspaceManagement\Tests\Tests"
+          $config.CodeCoverage.Enabled = $true
+          $config.CodeCoverage.Path = "D:\a\PSM-WorkspaceManager\PSM-WorkspaceManager\WorkspaceManagement\src"
+          $config.Output.Verbosity = "Diagnostic"
+          $config.Output.StackTraceVerbosity = "Full"
+          Invoke-Pester -Configuration $config -Verbose
+
+      - name: Publish results
+        uses: actions/upload-artifact@v4
+        with:
+          name: Coverage
+          path: '*.xml'
+          overwrite: true
+
+  Build-Code:
+    needs: Test-PSModule
+    name: Build-Code
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Initialize environment
+        uses: PSModule/Initialize-PSModule@main
